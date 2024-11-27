@@ -41,15 +41,15 @@ func (a *authz) Get(context.Context, *authzpb.GetRequest) (*authzpb.GetResponse,
 	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
 }
 
-type cert struct {
+type certz struct {
 	certzpb.UnimplementedCertzServer
 }
 
-func (c *cert) CanGenerateCSR(context.Context, *certzpb.CanGenerateCSRRequest) (*certzpb.CanGenerateCSRResponse, error) {
+func (c *certz) CanGenerateCSR(context.Context, *certzpb.CanGenerateCSRRequest) (*certzpb.CanGenerateCSRResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
 }
 
-func (c *cert) Rotate(certzpb.Certz_RotateServer) error {
+func (c *certz) Rotate(certzpb.Certz_RotateServer) error {
 	return status.Errorf(codes.Unimplemented, "Fake UnImplemented")
 }
 
@@ -69,7 +69,7 @@ func (c *credentialz) MutateHostCredentials(credentialzpb.Credentialz_RotateHost
 type Server struct {
 	s     *grpc.Server
 	authz *authz
-	cert  *cert
+	certz  *certz
 	pathz *pathz.Server
 	credz *credentialz
 }
@@ -83,7 +83,7 @@ func New(s *grpc.Server) *Server {
 	srv := &Server{
 		s:     s,
 		authz: &authz{},
-		cert:  &cert{},
+		certz:  &certz{},
 		pathz: &pathz.Server{},
 		credz: &credentialz{},
 	}
