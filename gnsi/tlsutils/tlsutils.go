@@ -66,6 +66,7 @@ func processBundleCertificate(cert *certzpb.Certificate) (string, *x509.Certific
 		skBuilder.WriteString(fmt.Sprintf("%02x:", b))
 	}
 
+	// Now build the skid and format it properly.
 	skid := skBuilder.String()
 	skid = strings.ToUpper(strings.TrimSuffix(skid, ":"))
 	if skid == "" {
