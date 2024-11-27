@@ -16,6 +16,7 @@ package gnsi
 
 import (
 	"context"
+	"io"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -42,14 +43,81 @@ func (a *authz) Get(context.Context, *authzpb.GetRequest) (*authzpb.GetResponse,
 }
 
 type certz struct {
-	certzpb.UnimplementedCertzServer
+	certzpb.CertzServer
 }
 
 func (c *certz) CanGenerateCSR(context.Context, *certzpb.CanGenerateCSRRequest) (*certzpb.CanGenerateCSRResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
 }
 
-func (c *certz) Rotate(certzpb.Certz_RotateServer) error {
+// AddProfile adds a new TLS profile to the server.
+func (c *certz) AddProfile(ctx context.Context, req *certzpb.AddProfileRequest) (*certzpb.AddProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
+}
+
+// GetProfileList retrieves a list of TLS profiles from the server.
+func (c *certz) GetProfileList(ctx context.Context, req *certzpb.GetProfileListRequest) (*certzpb.GetProfileListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
+}
+
+// DeleteProfile deletes a TLS profile from the server.
+func (c *certz) DeleteProfile(ctx context.Context, req *certzpb.DeleteProfileRequest) (*certzpb.DeleteProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "Fake UnImplemented")
+}
+
+func (c *certz) unpackTB(tb *certzpb.TrustBundle) error {
+	return status.Errorf(codes.Unimplemented, "Fake UnImplemented")
+}
+
+// Rotate is a bare-bones gNSI Certz rotation server example.
+func (c *certz) Rotate(stream certzpb.Certz_RotateServer) error {
+	for {
+		in, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		// Handle the trustbundle contents if they exist in the input request.
+		// The RotateRequest may have Certificates, GenerateCSR, or FinalizeRotation members.
+		if c := in.GetCertificates(); c != nil {
+			// c/UploadRequest should have one or more Entity messages, these could be a number of items:
+			// CertificateChain, TrustBundle, CRLBundle, AuthenPolicy, ExistingEntity, TrustbundlePKCS7.
+			for _, e := range c.GetEntity() {
+				if cc := e.GetCertificateChain(); cc != nil {
+					log.Infof("Received CertificateChain: %s", cc.GetCertificateChain())
+					continue
+				}
+				if tb := e.GetTrustBundle(); tb != nil {
+					log.Infof("Received TrustBundle: %s", tb.GetTrustBundle())
+					err := c.unpackTB(tb)
+					if err != nil {
+						log.Infof("Error unpacking TrustBundle: %v", err)
+						continue
+					}
+					if err := Send(); err != nil {
+						log.Errorf("Error sending TrustBundle unpack failure: %v", err)
+					}
+					continue
+				}
+				if crl := e.GetCertificateRevocationListBundle(); crl != nil {
+					log.Infof("Received CRLBundle: %s", crl.GetCrlBundle())
+					continue
+				}
+				if ap := e.GetAuthenticationPolicy; ap != nil {
+					log.Infof("Received AuthenticationPolicy: %s", ap.GetAuthenticationPolicy())
+					continue
+				}
+				if ee := e.GetExistingEntity(); ee != nil {
+					log.Infof("Received ExistingEntity: %s", ee.GetExistingEntity())
+					continue
+				}
+				if tb7 := e.GetTrustbundlePKCS7(); tb7 != nil {
+					log.Infof("Received TrustbundlePKCS7: %s", tb7.GetTrustbundlePKCS7())
+					continue
+				}
+			}
+		}
+
+	}
 	return status.Errorf(codes.Unimplemented, "Fake UnImplemented")
 }
 
@@ -69,7 +137,7 @@ func (c *credentialz) MutateHostCredentials(credentialzpb.Credentialz_RotateHost
 type Server struct {
 	s     *grpc.Server
 	authz *authz
-	certz  *certz
+	certz *certz
 	pathz *pathz.Server
 	credz *credentialz
 }
@@ -83,12 +151,12 @@ func New(s *grpc.Server) *Server {
 	srv := &Server{
 		s:     s,
 		authz: &authz{},
-		certz:  &certz{},
+		certz: &certz{},
 		pathz: &pathz.Server{},
 		credz: &credentialz{},
 	}
 	authzpb.RegisterAuthzServer(s, srv.authz)
-	certzpb.RegisterCertzServer(s, srv.cert)
+	certzpb.RegisterCertzServer(s, srv.certz)
 	credentialzpb.RegisterCredentialzServer(s, srv.credz)
 	pathzpb.RegisterPathzServer(s, srv.pathz)
 
