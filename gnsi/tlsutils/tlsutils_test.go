@@ -90,7 +90,7 @@ func TestProcessBundleCertificate(t *testing.T) {
 
 				// Potentially the Equal check is cheap enough to skip the cmp, the diff from cmp.Diff is useful in testing.
 				if test.wantCert.Equal(gotCert) {
-					continue
+					break
 				}
 				if diff := cmp.Diff(gotCert, test.wantCert); diff != "" {
 					t.Errorf("[%v]: Certificate Differences (+got/-want):\n%v", test.desc, diff)
