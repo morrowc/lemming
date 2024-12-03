@@ -1,6 +1,5 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
-
 go_library(
     name = "tlsutils",
     srcs = ["tlsutils.go"],
@@ -10,7 +9,6 @@ go_library(
         "@com_github_openconfig_gnsi//certz",
     ],
 )
-
 
 go_test(
     name = "tlsutils_test",

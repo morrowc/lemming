@@ -7,6 +7,8 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//gnsi/pathz",
+        "//gnsi/tlsutils",
+        "@com_github_golang_glog//:glog",
         "@com_github_openconfig_gnsi//authz",
         "@com_github_openconfig_gnsi//certz",
         "@com_github_openconfig_gnsi//credentialz",
