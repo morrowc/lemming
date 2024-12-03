@@ -32,6 +32,8 @@ import (
 	certzpb "github.com/openconfig/gnsi/certz"
 	credentialzpb "github.com/openconfig/gnsi/credentialz"
 	pathzpb "github.com/openconfig/gnsi/pathz"
+
+	log "github.com/golang/glog"
 )
 
 type authz struct {
