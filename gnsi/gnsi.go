@@ -21,6 +21,9 @@ import (
 	"io"
 	"sync"
 
+	log "github.com/golang/glog"
+	"github.com/openconfig/lemming/gnsi/pathz"
+	"github.com/openconfig/lemming/gnsi/tlsutils"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -29,11 +32,6 @@ import (
 	certzpb "github.com/openconfig/gnsi/certz"
 	credentialzpb "github.com/openconfig/gnsi/credentialz"
 	pathzpb "github.com/openconfig/gnsi/pathz"
-
-	log "github.com/golang/glog"
-
-	"github.com/openconfig/lemming/gnsi/pathz"
-	"github.com/openconfig/lemming/gnsi/tlsutils"
 )
 
 type authz struct {
