@@ -48,7 +48,7 @@ func processBundleCertificate(cert *certzpb.Certificate) (string, *x509.Certific
 		return "", nil, fmt.Errorf("expected KeyMaterial to be nil, got a key")
 	}
 
-	// Parse the certificate and return it.
+	// Parse the certificate and return it
 	block, rest := pem.Decode(cert.GetRawCertificate())
 	if len(rest) > 0 {
 		return "", nil, fmt.Errorf("parsing PEM block returned more than 1 item: %q", rest)
