@@ -129,9 +129,9 @@ func TestParseTrustBundle(t *testing.T) {
 				"cert3.pem",
 			}),
 			want: map[string]*x509.Certificate{
-				"C4:39:49:3C:A4:53:09:0B:9F:BD:5F:3D:0A:CD:C3:34:18:2A:BC:40": readPemAsX509(t, "cert1.pem"),
-				"AB:CD:EF:12:34:56:78:90:AB:CD:EF:12:34:56:78:90:AB:CD:EF:12": readPemAsX509(t, "cert2.pem"),
-				"12:34:56:78:90:AB:CD:EF:12:34:56:78:90:AB:CD:EF:12:34:56:78": readPemAsX509(t, "cert3.pem"),
+				"7A:52:B5:8F:C2:1E:8B:35:A1:34:59:77:A2:BC:AC:CD:D7:0E:55:1A": readPemAsX509(t, "cert1.pem"),
+				"2B:6D:51:B7:DA:1C:BC:E4:C9:1B:2D:85:1B:75:8A:F3:C5:D2:22:26": readPemAsX509(t, "cert2.pem"),
+				"F3:11:20:D4:44:5C:30:EF:F5:25:DA:A4:7C:AE:BC:B7:FF:2C:A7:53": readPemAsX509(t, "cert3.pem"),
 			},
 		},
 		{
