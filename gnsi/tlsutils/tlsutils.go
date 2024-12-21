@@ -109,6 +109,5 @@ func ParseTrustBundle(bundle *certzpb.CertificateChain) (map[string]*x509.Certif
 		res[skid] = cert
 		parent = parent.GetParent()
 	}
-
 	return res, nil
 }
