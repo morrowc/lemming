@@ -67,6 +67,7 @@ func TestProcessBundleCertificate(t *testing.T) {
 		wantIssuerID: "C4:39:49:3C:A4:53:09:0B:9F:BD:5F:3D:0A:CD:C3:34:18:2A:BC:40",
 		wantCert:     readPemAsX509(t, "singlecert.pem"),
 		wantCert:     readPemAsX509(t, "singlecert.pem"),
+		wantCert:     readPemAsX509(t, "singlecert.pem"),
 	}, {
 		desc:    "BadCert - is key",
 		cert:    buildCertificateFromFile(t, "bad.pem"),
@@ -75,7 +76,6 @@ func TestProcessBundleCertificate(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.desc, func(t *testing.T) {
-			gotID, gotCert, err := processBundleCertificate(test.cert)
 			gotID, gotCert, err := processBundleCertificate(test.cert)
 
 			switch {
@@ -88,10 +88,6 @@ func TestProcessBundleCertificate(t *testing.T) {
 					t.Errorf("[%v]: mismatch IssuerId:\n got: %v\nwant: %v", test.desc, gotID, test.wantIssuerID)
 				}
 
-				// Potentially the Equal check is cheap enough to skip the cmp, the diff from cmp.Diff is useful in testing.
-				if test.wantCert.Equal(gotCert) {
-					break
-				}
 				if diff := cmp.Diff(gotCert, test.wantCert); diff != "" {
 					t.Errorf("[%v]: Certificate Differences (+got/-want):\n%v", test.desc, diff)
 				}
