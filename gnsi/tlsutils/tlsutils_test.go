@@ -125,7 +125,7 @@ func TestParseTrustBundle(t *testing.T) {
 		{
 			desc: "ValidChain",
 			bundle: buildCertificateChainFromFiles(t, []string{
-				"cert1.pem",
+				"cert1.pem", // retrieved from the featureprofiles/features/security/gnsi/test_data content.
 				"cert2.pem",
 				"cert3.pem",
 			}),
