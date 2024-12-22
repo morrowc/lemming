@@ -101,6 +101,7 @@ func buildCertificateChainFromFiles(t *testing.T, certFiles []string) *certzpb.C
 	}
 
 	var buildChain func(int) *certzpb.CertificateChain
+	// Run buildChain recursively to build the chain of certificates.
 	buildChain = func(index int) *certzpb.CertificateChain {
 		if index >= len(certFiles) {
 			return nil
