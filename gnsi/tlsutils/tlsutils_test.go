@@ -4,9 +4,9 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"os"
-	"path/filepath"
 	"testing"
 
+	"github.com/bazelbuild/rules_go/go/runfiles"
 	"github.com/google/go-cmp/cmp"
 
 	certzpb "github.com/openconfig/gnsi/certz"
@@ -16,13 +16,14 @@ const (
 	testDataDir = "testdata"
 )
 
-// Simply read a file from disk and return the bytes.
+// Simply read a filesPath()
 func readFile(t *testing.T, path string) []byte {
-	cwd, err := os.Getwd()
+	fullPath, err := runfiles.Rlocation(path)
 	if err != nil {
-		t.Fatalf("failed to get current working directory: %v", err)
+		t.Fatalf("failed to resolve runfile path: %v", err)
 	}
-	data, err := os.ReadFile(filepath.Join(cwd, testDataDir, path))
+
+	data, err := os.ReadFile(fullPath)
 	if err != nil {
 		t.Fatalf("failed to read certificate from file: %v", err)
 	}

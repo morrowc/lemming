@@ -1377,6 +1377,8 @@ github.com/aristanetworks/arista-ceoslab-operator/v2 v2.1.2 h1:1aAxwwu4xyfiU1/FX
 github.com/aristanetworks/arista-ceoslab-operator/v2 v2.1.2/go.mod h1:/mvSt2fEmlVEU7dppip3UNz/MUt380f50dFsZRGn83o=
 github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5 h1:0CwZNZbxp69SHPdPJAN/hZIm0C4OItdklCFmMRWYpio=
 github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5/go.mod h1:wHh0iHkYZB8zMSxRWpUBQtwG5a7fFgvEO+odwuTv2gs=
+github.com/bazelbuild/rules_go v0.51.0 h1:og6AqW7T4uFgcySRYn/EFg5VUHR2KY7jypYmVeIGh9k=
+github.com/bazelbuild/rules_go v0.51.0/go.mod h1:+jnXOJJO4C+WYH5v1v0SsPTncQ9sHGsCrAOgrflqSUE=
 github.com/boombuler/barcode v1.0.0/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
 github.com/boombuler/barcode v1.0.1/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
 github.com/carlmontanari/difflibgo v0.0.0-20210718194309-31b9e131c298 h1:Y8rTum6LZ8oP/2aC+OaaP76OCjHbunKMkim81mzNCH0=

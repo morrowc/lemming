@@ -74,6 +74,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.48.1 // indirect
 	github.com/Masterminds/semver/v3 v3.2.1 // indirect
 	github.com/aristanetworks/arista-ceoslab-operator/v2 v2.1.2 // indirect
+	github.com/bazelbuild/rules_go v0.51.0 // indirect
 	github.com/carlmontanari/difflibgo v0.0.0-20210718194309-31b9e131c298 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/creack/pty v1.1.18 // indirect

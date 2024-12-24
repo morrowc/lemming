@@ -1,5 +1,10 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
+fielset(
+    name = "testdata",
+    files = glob(["testdata/*"]),
+)
+
 go_library(
     name = "tlsutils",
     srcs = ["tlsutils.go"],
@@ -12,6 +17,7 @@ go_library(
 
 go_test(
     name = "tlsutils_test",
+    data = [":testdata"],
     srcs = [
         "tlsutils_test.go",
     ],
