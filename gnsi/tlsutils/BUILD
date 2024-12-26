@@ -24,7 +24,7 @@ go_test(
     deps = [
         "@com_github_google_go_cmp//cmp",
         "@com_github_openconfig_gnsi//certz",
-        "@com_github_bazel-contrib//rules_go",
+        "@com_github_bazelcontrib//rules_go",
     ],
     
 )
