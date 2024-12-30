@@ -4,6 +4,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/bazelbuild/rules_go/go/runfiles"
@@ -13,12 +14,12 @@ import (
 )
 
 const (
-	testDataDir = "testdata"
+	testDataDir = "__main__/gnsi/tlsutils/testdata"
 )
 
-// Simply read a filesPath()
-func readFile(t *testing.T, path string) []byte {
-	fullPath, err := runfiles.Rlocation(path)
+// Simply read a file from runfiles.
+func readFile(t *testing.T, fn string) []byte {
+	fullPath, err := runfiles.Rlocation(filepath.Join(testDataDir, fn))
 	if err != nil {
 		t.Fatalf("failed to resolve runfile path: %v", err)
 	}

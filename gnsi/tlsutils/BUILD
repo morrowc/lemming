@@ -2,7 +2,8 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 filegroup(
     name = "testdata",
-    srcs = glob(["testdata/*"]),
+    srcs = glob(["testdata/**"]),
+    visibility = ["//visibility:public"],
 )
 
 go_library(
@@ -17,14 +18,12 @@ go_library(
 
 go_test(
     name = "tlsutils_test",
-    srcs = [
-        "tlsutils_test.go",
-    ],
-    data = [":testdata"],
+    srcs = ["tlsutils_test.go"],
+    data = ["//gnsi/tlsutils:testdata"],
+    embed = [":tlsutils"],
     deps = [
         "@com_github_google_go_cmp//cmp",
         "@com_github_openconfig_gnsi//certz",
-        "@com_github_bazelcontrib//rules_go",
+        "@io_bazel_rules_go//go/runfiles:go_default_library",
     ],
-    
 )

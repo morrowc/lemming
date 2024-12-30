@@ -7,6 +7,7 @@ require (
 	cloud.google.com/go/logging v1.10.0
 	cloud.google.com/go/trace v1.10.10
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/trace v1.24.1
+	github.com/bazelbuild/rules_go v0.51.0
 	github.com/fatih/color v1.15.0
 	github.com/go-logr/logr v1.4.2
 	github.com/golang/glog v1.2.1
@@ -74,7 +75,6 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/internal/resourcemapping v0.48.1 // indirect
 	github.com/Masterminds/semver/v3 v3.2.1 // indirect
 	github.com/aristanetworks/arista-ceoslab-operator/v2 v2.1.2 // indirect
-	github.com/bazelbuild/rules_go v0.51.0 // indirect
 	github.com/carlmontanari/difflibgo v0.0.0-20210718194309-31b9e131c298 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/creack/pty v1.1.18 // indirect
@@ -161,7 +161,6 @@ require (
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.22.1-0.20240829175637-39126e24d653 // indirect
-	golang.org/x/tools/cmd/cover v0.1.0-deprecated // indirect
 	google.golang.org/genproto v0.0.0-20240708141625-4ad9e859172b // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240709173604-40e1e62336c5 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
