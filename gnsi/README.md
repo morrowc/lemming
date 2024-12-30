@@ -6,10 +6,10 @@ The gNSI service for a system must provide at leaast:
 
 * Internal storage of relevant data elements
   exchanged/managed.
-  - TLS Artifacts (certificates, keys, trustbundles, CRLs, etc)
-  - User data (credentials, keys)
-  - Device identity information (keys)
-  - Various authorization and authentication data for services
+  * TLS Artifacts (certificates, keys, trustbundles, CRLs, etc)
+  * User data (credentials, keys)
+  * Device identity information (keys)
+  * Various authorization and authentication data for services
 * Public services used to manage these data elements
 * Private servics useful to other gRPC services on
   the system to synchronize data elements as necessary.
