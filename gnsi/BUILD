@@ -2,11 +2,17 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "gnsi",
-    srcs = ["gnsi.go"],
+    srcs = [
+        "gnsi.go",
+    ],
     importpath = "github.com/openconfig/lemming/gnsi",
     visibility = ["//visibility:public"],
     deps = [
+        "//gnsi/authz",
+        "//gnsi/certz",
+        "//gnsi/credentialz",
         "//gnsi/pathz",
+        "//gnsi/store",
         "//gnsi/tlsutils",
         "@com_github_golang_glog//:glog",
         "@com_github_openconfig_gnsi//authz",
